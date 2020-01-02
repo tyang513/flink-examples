@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d [%thread] [%X{traceId}:%X{spanId}] %level %logger{36}:%line - %msg%n</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+	</appender>
+
+	<!--<appender name="REQUEST_LOG" class="ch.qos.logback.classic.AsyncAppender">-->
+		<!--<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+			<!--<fileNamePattern>./gateway/audit/request.%d{yyyy-ww}.log</fileNamePattern>-->
+			<!--<maxHistory>60</maxHistory>-->
+			<!--<totalSizeCap>10GB</totalSizeCap>-->
+		<!--</rollingPolicy>-->
+		<!--<queueSize>100000</queueSize>-->
+		<!--<discardingThreshold>0</discardingThreshold>-->
+		<!--<encoder>-->
+			<!--<pattern>%msg%n</pattern>-->
+			<!--<charset>UTF-8</charset>-->
+		<!--</encoder>-->
+	<!--</appender>-->
+	<!---->
+	<!--<appender name="INVOKE_LOG"-->
+		<!--class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+		<!--<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+			<!--<fileNamePattern>./gateway/invoke/call.%d{yyyy-ww}.log</fileNamePattern>-->
+			<!--<maxHistory>30</maxHistory>-->
+			<!--<totalSizeCap>10GB</totalSizeCap>-->
+		<!--</rollingPolicy>-->
+
+		<!--<encoder>-->
+			<!--<pattern>%msg%n</pattern>-->
+			<!--<charset>UTF-8</charset>-->
+		<!--</encoder>-->
+	<!--</appender>-->
+	<!---->
+	<!--<appender name="DATA_STORE"-->
+		<!--class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+		<!--<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+			<!--<fileNamePattern>./gateway/data/data.%d{yyyy-MM-dd}.log</fileNamePattern>-->
+			<!--<maxHistory>30</maxHistory>-->
+			<!--<totalSizeCap>30GB</totalSizeCap>-->
+		<!--</rollingPolicy>-->
+
+		<!--<encoder>-->
+			<!--<pattern>%msg%n</pattern>-->
+			<!--<charset>UTF-8</charset>-->
+		<!--</encoder>-->
+	<!--</appender>-->
+
+	<!--<appender name="DATA_STORE_AUDIT"-->
+		<!--class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+		<!--<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+			<!--<fileNamePattern>./gateway/data/store-audit.%d{yyyy-ww}.log</fileNamePattern>-->
+			<!--<maxHistory>30</maxHistory>-->
+			<!--<totalSizeCap>30GB</totalSizeCap>-->
+		<!--</rollingPolicy>-->
+
+		<!--<encoder>-->
+			<!--<pattern>%d{yyyy-MM-dd-HH:mm:ss.SSS} %level [%thread]-%class>>%msg%n</pattern>-->
+			<!--<charset>UTF-8</charset>-->
+		<!--</encoder>-->
+	<!--</appender>-->
+	<!---->
+	<!--<appender name="ROTUE_FETCH_LOG"-->
+		<!--class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+		<!--<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+			<!--<fileNamePattern>./gateway/route/routes.%d{yyyy-ww}.log</fileNamePattern>-->
+			<!--<maxHistory>20</maxHistory>-->
+			<!--<totalSizeCap>10GB</totalSizeCap>-->
+		<!--</rollingPolicy>-->
+
+		<!--<encoder>-->
+			<!--<pattern>%d{yyyy-MM-dd-HH:mm:ss.SSS} %msg%n</pattern>-->
+			<!--<charset>UTF-8</charset>-->
+		<!--</encoder>-->
+	<!--</appender>-->
+	<!---->
+	<!--<appender name="GATEWAY_LOG"-->
+		<!--class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+		<!--<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+			<!--<fileNamePattern>./gateway/gateway.%d{yyyy-MM-dd}.log</fileNamePattern>-->
+			<!--<maxHistory>60</maxHistory>-->
+			<!--<totalSizeCap>10GB</totalSizeCap>-->
+		<!--</rollingPolicy>-->
+
+		<!--<encoder>-->
+			<!--<pattern>%d{yyyy-MM-dd-HH:mm:ss.SSS} %level [%thread]-%class:%line>>%msg%n</pattern>-->
+			<!--<charset>UTF-8</charset>-->
+		<!--</encoder>-->
+	<!--</appender>-->
+	<!---->
+	<!--<appender name="NETTY_SOCKET_LOG"-->
+		<!--class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+		<!--<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+			<!--<fileNamePattern>./gateway/netty.%d{yyyy-ww}.log</fileNamePattern>-->
+			<!--<maxHistory>60</maxHistory>-->
+			<!--<totalSizeCap>10GB</totalSizeCap>-->
+		<!--</rollingPolicy>-->
+
+		<!--<encoder>-->
+			<!--<pattern>%d{yyyy-MM-dd-HH:mm:ss.SSS} -%class:%line>>%msg%n</pattern>-->
+			<!--<charset>UTF-8</charset>-->
+		<!--</encoder>-->
+	<!--</appender>-->
+
+	<!--<appender name="METRICS_LOG"-->
+			  <!--class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+		<!--<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+			<!--<fileNamePattern>./gateway/metrics/metric.%d{yyyy-ww}.log</fileNamePattern>-->
+			<!--<maxHistory>30</maxHistory>-->
+			<!--<totalSizeCap>30GB</totalSizeCap>-->
+		<!--</rollingPolicy>-->
+
+		<!--<encoder>-->
+			<!--<pattern>%d{yyyy-MM-dd-HH:mm:ss.SSS} %msg%n</pattern>-->
+			<!--<charset>UTF-8</charset>-->
+		<!--</encoder>-->
+	<!--</appender>-->
+	<!---->
+	<!--<logger name="QueryLog" level="info" additivity="false">-->
+	    <!--<appender-ref ref="REQUEST_LOG"/>-->
+	<!--</logger>-->
+	<!---->
+	<!--<logger name="DataStore" level="INFO" additivity="false">-->
+	    <!--<appender-ref ref="DATA_STORE"/>-->
+	<!--</logger>-->
+	<!---->
+	<!--<logger name="DataStoreAudit" level="INFO" additivity="false">-->
+	    <!--<appender-ref ref="DATA_STORE_AUDIT"/>-->
+	<!--</logger>-->
+		<!---->
+	<!--<logger name="RouteFetchLog" level="INFO" additivity="false">-->
+	    <!--<appender-ref ref="ROTUE_FETCH_LOG"/>-->
+	<!--</logger>-->
+		<!---->
+	<!--<logger name="InvokeLog" level="info" additivity="false">-->
+	    <!--<appender-ref ref="INVOKE_LOG"/>-->
+	<!--</logger>-->
+
+	<!--<logger name="NettySocketLog" level="info" additivity="false">-->
+	    <!--<appender-ref ref="NETTY_SOCKET_LOG"/>-->
+	<!--</logger>-->
+
+	<!--<logger name="MetricsLog" level="info" additivity="false">-->
+		<!--<appender-ref ref="METRICS_LOG"/>-->
+	<!--</logger>-->
+
+	<logger name="org.apache.kafka" level="off"/>
+
+	<root level="debug">
+		<appender-ref ref="stdout" />
+	</root>
+</configuration>
