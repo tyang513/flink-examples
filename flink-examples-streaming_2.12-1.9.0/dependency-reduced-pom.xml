@@ -7,9 +7,10 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.talkingdata.flink</groupId>
-  <artifactId>talkingdata-flink-examples</artifactId>
-  <name>talkingdata-flink-example</name>
+  <artifactId>flink-examples-streaming_2.12-1.9.0</artifactId>
+  <name>flink-examples-streaming_2.12-1.9.0</name>
   <version>0.1</version>
+  <url>http://www.myorganization.org</url>
   <build>
     <pluginManagement>
       <plugins>
@@ -92,7 +93,7 @@
               </filters>
               <transformers>
                 <transformer>
-                  <mainClass>com.talkingdata.flink.WiFiAnalyticsStreamingJob</mainClass>
+                  <mainClass>org.myorg.quickstart.StreamingJob</mainClass>
                 </transformer>
               </transformers>
             </configuration>

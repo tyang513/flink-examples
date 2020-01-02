@@ -60,16 +60,7 @@ public class WordCount {
         env.getConfig().setGlobalJobParameters(params);
 
         // get input data
-        DataStream<String> text;
-        if (params.has("input")) {
-            // read the text file from given input path
-            text = env.readTextFile(params.get("input"));
-        } else {
-            System.out.println("Executing WordCount example with default input data set.");
-            System.out.println("Use --input to specify file input.");
-            // get default test text data
-            text = env.fromElements(WordCountData.WORDS);
-        }
+        DataStream<String> text = env.fromElements(WordCountData.WORDS);
 
         DataStream<Tuple2<String, Integer>> counts =
                 // split up the lines in pairs (2-tuples) containing: (word,1)

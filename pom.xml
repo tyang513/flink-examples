@@ -11,9 +11,9 @@
 
     <modules>
         <module>flink-examples-streaming_2.12-1.9.0</module>
-        <module>flink-examples-batch_2.12-1.9.0</module>
         <module>talkingdata-netty-examples</module>
         <module>talkingdata-flink-examples</module>
+        <!--<module>flink-examples-batch_2.12-1.9.0</module>-->
     </modules>
 
     <properties>
