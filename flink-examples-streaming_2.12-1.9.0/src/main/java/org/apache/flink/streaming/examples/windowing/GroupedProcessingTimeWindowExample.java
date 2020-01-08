@@ -56,11 +56,7 @@ public class GroupedProcessingTimeWindowExample {
 //			.window(Time.of(2500, MILLISECONDS), Time.of(500, MILLISECONDS))
 //			.apply(new SummingWindowFunction())
 
-			.addSink(new SinkFunction<Tuple2<Long, Long>>() {
-				@Override
-				public void invoke(Tuple2<Long, Long> value) {
-				}
-			});
+			.print();
 
 		env.execute();
 	}
@@ -107,7 +103,7 @@ public class GroupedProcessingTimeWindowExample {
 
 			final long startTime = System.currentTimeMillis();
 
-			final long numElements = 20000000;
+			final long numElements = 20000;
 			final long numKeys = 10000;
 			long val = 1L;
 			long count = 0L;

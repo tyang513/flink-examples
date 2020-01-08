@@ -17,9 +17,11 @@
 
 package org.apache.flink.streaming.examples.wordcount;
 
-import org.apache.flink.api.common.functions.FlatMapFunction;
+import org.apache.flink.api.common.functions.RichFlatMapFunction;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.api.java.utils.ParameterTool;
+import org.apache.flink.runtime.state.filesystem.FsStateBackend;
+import org.apache.flink.streaming.api.CheckpointingMode;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.examples.wordcount.util.WordCountData;
@@ -44,10 +46,6 @@ import org.apache.flink.util.Collector;
  */
 public class WordCount {
 
-    // *************************************************************************
-    // PROGRAM
-    // *************************************************************************
-
     public static void main(String[] args) throws Exception {
 
         // Checking input parameters
@@ -56,9 +54,12 @@ public class WordCount {
         // set up the execution environment
         final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
+        System.out.println(StreamExecutionEnvironment.getDefaultLocalParallelism());
         // make parameters available in the web interface
         env.getConfig().setGlobalJobParameters(params);
-
+        String checkpointDir = "file:///flink/checkpoint";
+        env.setStateBackend(new FsStateBackend(checkpointDir, true));
+        env.enableCheckpointing(10, CheckpointingMode.EXACTLY_ONCE);
         // get input data
         DataStream<String> text = env.fromElements(WordCountData.WORDS);
 
@@ -69,12 +70,8 @@ public class WordCount {
                         .keyBy(0).sum(1);
 
         // emit result
-        if (params.has("output")) {
-            counts.writeAsText(params.get("output"));
-        } else {
-            System.out.println("Printing result to stdout. Use --output to specify output path.");
-            counts.print();
-        }
+        System.out.println("Printing result to stdout.");
+        counts.print();
 
         // execute program
         env.execute("Streaming WordCount");
@@ -90,17 +87,17 @@ public class WordCount {
      * splits it into multiple pairs in the form of "(word,1)" ({@code Tuple2<String,
      * Integer>}).
      */
-    public static final class Tokenizer implements FlatMapFunction<String, Tuple2<String, Integer>> {
+    public static final class Tokenizer extends RichFlatMapFunction<String, Tuple2<String, Integer>> {
 
         @Override
         public void flatMap(String value, Collector<Tuple2<String, Integer>> out) {
             // normalize and split the line
-            String[] tokens = value.toLowerCase().split("\\W+");
+            String[] tokens = value.toLowerCase().split(" ");
 
             // emit the pairs
             for (String token : tokens) {
                 if (token.length() > 0) {
-                    out.collect(new Tuple2<>(token, 1));
+                    out.collect(new Tuple2<>(token.toLowerCase(), 1));
                 }
             }
         }
